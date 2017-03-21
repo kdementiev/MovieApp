@@ -38,12 +38,12 @@
   
     __weak typeof(self) _self = self;
     [TMDBMoviesAPI fetchPopularMovies:^(TMDBMoviesPage *moviesPage) {
-        [_self _processAndNotifyWithMoviesFetched:moviesPage.results];
+        [_self MA_processAndNotifyWithMoviesFetched:moviesPage.results];
     }];
     
 }
 
-- (void)_processAndNotifyWithMoviesFetched:(NSArray<TMDBMovieEntity *> *)tmdbMovies {
+- (void)MA_processAndNotifyWithMoviesFetched:(NSArray<TMDBMovieEntity *> *)tmdbMovies {
     
     _moviesList = [NSMutableArray array];
     

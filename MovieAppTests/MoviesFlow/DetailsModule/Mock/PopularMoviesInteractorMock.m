@@ -29,17 +29,17 @@
     NSMutableArray<MovieInfo *> *moviesList = [NSMutableArray array];
     
     for (int i = 0; i < _moviesCount; i++) {
-        [moviesList addObject:[self _standartMovieInfo]];
+        [moviesList addObject:[self MA_standartMovieInfo]];
     }
     
     [self.delegate onNewContentReceived: moviesList];
 }
 
 - (MovieInfo *)movieForIndex:(NSUInteger)index {
-    return [self _standartMovieInfo];
+    return [self MA_standartMovieInfo];
 }
 
-- (MovieInfo *)_standartMovieInfo {
+- (MovieInfo *)MA_standartMovieInfo {
     MovieInfo *info = [MovieInfo new];
     return info;
 }

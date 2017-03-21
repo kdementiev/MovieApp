@@ -36,13 +36,13 @@
     if (self) {
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_networkStatusWasChanged:)
+                                                 selector:@selector(MA_networkStatusWasChanged:)
                                                      name:AFNetworkingReachabilityDidChangeNotification
                                                    object:nil];
         
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_applicationWillRise:)
+                                                 selector:@selector(MA_applicationWillRise:)
                                                      name:UIApplicationWillEnterForegroundNotification
                                                    object:nil];
         
@@ -71,19 +71,19 @@
 
 #pragma mark - Notifications -
 
-- (void)_networkStatusWasChanged:(NSNotification*)notification {
+- (void)MA_networkStatusWasChanged:(NSNotification*)notification {
     if ([[notification.userInfo valueForKey:AFNetworkingReachabilityNotificationStatusItem] boolValue]) {
-        [self _notifySubscribers];
+        [self MA_notifySubscribers];
     }
 }
 
-- (void)_applicationWillRise:(NSNotification*)notification {
-    [self _notifySubscribers];
+- (void)MA_applicationWillRise:(NSNotification*)notification {
+    [self MA_notifySubscribers];
 }
 
 #pragma mark - Helpers -
 
-- (void)_notifySubscribers {
+- (void)MA_notifySubscribers {
     
     NSEnumerator<NetworkingStatusServiceCallback> *enumerator = [self.subscribers objectEnumerator];
     NetworkingStatusServiceCallback callback;

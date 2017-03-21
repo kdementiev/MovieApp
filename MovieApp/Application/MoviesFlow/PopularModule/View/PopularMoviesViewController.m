@@ -40,16 +40,14 @@
     [super viewDidLoad];
 
     // Notify on fist launch.
-    [self _notifyWithUserWantsLatestContent];
-    
-//    [self.contentRefreshControl beginRefreshing];
+    [self MA_notifyWithUserWantsLatestContent];
 }
 
 #pragma mark - Interface Actions -
 
 - (IBAction)onRefreshAction:(id)sender {
     // Notify with user input.
-    [self _notifyWithUserWantsLatestContent];
+    [self MA_notifyWithUserWantsLatestContent];
 }
 
 #pragma mark - Presentation controls -
@@ -59,7 +57,6 @@
     _moviesList = moviesList;
     
     [self.tableView reloadData];
-    
     [self.contentRefreshControl endRefreshing];
 }
 
@@ -69,11 +66,11 @@
 
 #pragma mark - Output Helpers -
 
-- (void)_notifyWithUserWantsLatestContent {
+- (void)MA_notifyWithUserWantsLatestContent {
     [self.delegate userWantsLatestContent];
 }
 
-- (void)_notifyWithUserWantsDetailedInformationForItem:(NSUInteger)index {
+- (void)MA_notifyWithUserWantsDetailedInformationForItem:(NSUInteger)index {
     [self.delegate userWantsDetailedInformationForItem:index];
 }
 
@@ -81,7 +78,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [self _notifyWithUserWantsDetailedInformationForItem:indexPath.row];
+    [self MA_notifyWithUserWantsDetailedInformationForItem:indexPath.row];
 }
 
 #pragma mark - TableView Data Source -
@@ -94,18 +91,22 @@
     
     // Prepare cell.
     MovieTableViewCell *movieCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MovieTableViewCell class])];
-    
     MovieInfo *movieInfo = [_moviesList objectAtIndex:indexPath.row];
     
-    movieCell.titleLabel.text = movieInfo.title;
-    movieCell.originalTitleLabel.text = movieInfo.originalTitle;
-    movieCell.overviewLabel.text = movieInfo.overview;
-    
-    [movieCell setRate:movieInfo.rate];
-    
-    [movieCell.backgroundImageView setImageWithURL: movieInfo.backgroundURL];
+    [self MA_prepareCell:movieCell withMoviewInfo:movieInfo];
     
     return movieCell;
+}
+
+- (void)MA_prepareCell:(MovieTableViewCell *)cell withMoviewInfo:(MovieInfo *)movieInfo {
+    
+    cell.titleLabel.text = movieInfo.title;
+    cell.originalTitleLabel.text = movieInfo.originalTitle;
+    cell.overviewLabel.text = movieInfo.overview;
+    
+    [cell setRate:movieInfo.rate];
+    
+    [cell.backgroundImageView setImageWithURL: movieInfo.backgroundURL];
 }
 
 @end

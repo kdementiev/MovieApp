@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		22A9E58855AECC8CC00C7B4B /* libPods-MovieApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F01AD8810D68BEA6BD4D1617 /* libPods-MovieApp.a */; };
 		5BE2974C42F8D26739C7F71C /* libPods-MovieAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6360EAA5FACCAF5C79D95B8 /* libPods-MovieAppTests.a */; };
+		741E14391E81B0A800AC82D5 /* PopularMoviesInteractorMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 741E14381E81B0A800AC82D5 /* PopularMoviesInteractorMock.m */; };
 		745666301E7D4CEA00E5632E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 745666221E7D4CEA00E5632E /* AppDelegate.m */; };
 		745666311E7D4CEA00E5632E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 745666231E7D4CEA00E5632E /* main.m */; };
 		745666321E7D4CEA00E5632E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7456662C1E7D4CEA00E5632E /* Assets.xcassets */; };
@@ -39,7 +40,6 @@
 		74CE45E91E7DAE54005F2036 /* TMDBGenreEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45E61E7DAE54005F2036 /* TMDBGenreEntity.m */; };
 		74CE45EA1E7DAE54005F2036 /* TMDBNetworkingCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45E81E7DAE54005F2036 /* TMDBNetworkingCore.m */; };
 		74CE45F21E7DC10A005F2036 /* MATestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45F11E7DC10A005F2036 /* MATestCase.m */; };
-		74CE45F61E7DC24A005F2036 /* PopularMoviesInteractorMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45F51E7DC24A005F2036 /* PopularMoviesInteractorMock.m */; };
 		74CE45F91E7DCDE7005F2036 /* TMDBMoviesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45F81E7DCDE7005F2036 /* TMDBMoviesAPI.m */; };
 		74CE45FC1E7DCE44005F2036 /* TMDBMovieEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45FB1E7DCE44005F2036 /* TMDBMovieEntity.m */; };
 		74CE46031E7FBC1C005F2036 /* MATMDBMoviesAPIFetchPopularTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE46021E7FBC1C005F2036 /* MATMDBMoviesAPIFetchPopularTests.m */; };
@@ -58,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		6689B5984396EC0A00145EDD /* Pods-MovieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieAppTests/Pods-MovieAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		741E14371E81B0A800AC82D5 /* PopularMoviesInteractorMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularMoviesInteractorMock.h; sourceTree = "<group>"; };
+		741E14381E81B0A800AC82D5 /* PopularMoviesInteractorMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularMoviesInteractorMock.m; sourceTree = "<group>"; };
 		745665DD1E7D4B4200E5632E /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		745665F61E7D4B4200E5632E /* MovieAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		745665FC1E7D4B4200E5632E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,8 +124,6 @@
 		74CE45E81E7DAE54005F2036 /* TMDBNetworkingCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBNetworkingCore.m; sourceTree = "<group>"; };
 		74CE45F01E7DC10A005F2036 /* MATestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MATestCase.h; sourceTree = "<group>"; };
 		74CE45F11E7DC10A005F2036 /* MATestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MATestCase.m; sourceTree = "<group>"; };
-		74CE45F41E7DC24A005F2036 /* PopularMoviesInteractorMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopularMoviesInteractorMock.h; path = Mock/PopularMoviesInteractorMock.h; sourceTree = "<group>"; };
-		74CE45F51E7DC24A005F2036 /* PopularMoviesInteractorMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopularMoviesInteractorMock.m; path = Mock/PopularMoviesInteractorMock.m; sourceTree = "<group>"; };
 		74CE45F71E7DCDE7005F2036 /* TMDBMoviesAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBMoviesAPI.h; sourceTree = "<group>"; };
 		74CE45F81E7DCDE7005F2036 /* TMDBMoviesAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBMoviesAPI.m; sourceTree = "<group>"; };
 		74CE45FA1E7DCE44005F2036 /* TMDBMovieEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBMovieEntity.h; sourceTree = "<group>"; };
@@ -520,8 +520,6 @@
 			isa = PBXGroup;
 			children = (
 				74CE45F31E7DC198005F2036 /* Mock */,
-				74CE45F41E7DC24A005F2036 /* PopularMoviesInteractorMock.h */,
-				74CE45F51E7DC24A005F2036 /* PopularMoviesInteractorMock.m */,
 			);
 			path = DetailsModule;
 			sourceTree = "<group>";
@@ -544,6 +542,8 @@
 		74CE45F31E7DC198005F2036 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				741E14371E81B0A800AC82D5 /* PopularMoviesInteractorMock.h */,
+				741E14381E81B0A800AC82D5 /* PopularMoviesInteractorMock.m */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -810,8 +810,8 @@
 			files = (
 				74CE45F21E7DC10A005F2036 /* MATestCase.m in Sources */,
 				74CE46031E7FBC1C005F2036 /* MATMDBMoviesAPIFetchPopularTests.m in Sources */,
-				74CE45F61E7DC24A005F2036 /* PopularMoviesInteractorMock.m in Sources */,
 				74BD80F81E806AB30061F2F4 /* MATMDBMoviesAPIDetailedMovieTests.m in Sources */,
+				741E14391E81B0A800AC82D5 /* PopularMoviesInteractorMock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

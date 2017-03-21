@@ -20,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // Get PopularMoviesViewInterface from our root navigation controller.
     UINavigationController *rootViewController = (UINavigationController*)self.window.rootViewController;
     UIViewController *moduleController = rootViewController.topViewController;
     

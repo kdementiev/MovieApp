@@ -83,7 +83,7 @@ NSUInteger const TMDBResponsesCacheOnDiskSize = 64 * 1024 * 1024;
         // Prepare reachability monitor.
         __weak typeof(self) _self = self;
         [self.sessionManager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-            [_self _validateCachingPolicyWithStatus:status];
+            [_self MA_validateCachingPolicyWithStatus:status];
         }];
         
         [self.sessionManager.reachabilityManager startMonitoring];
@@ -93,7 +93,7 @@ NSUInteger const TMDBResponsesCacheOnDiskSize = 64 * 1024 * 1024;
     return self;
 }
 
-- (void)_validateCachingPolicyWithStatus:(AFNetworkReachabilityStatus)status {
+- (void)MA_validateCachingPolicyWithStatus:(AFNetworkReachabilityStatus)status {
     _sessionManager.requestSerializer.cachePolicy = status ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReturnCacheDataDontLoad;
 }
 

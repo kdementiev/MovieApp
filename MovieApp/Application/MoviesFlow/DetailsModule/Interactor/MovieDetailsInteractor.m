@@ -30,7 +30,7 @@
         
         __weak typeof(self) _self = self;
         [networkingStatusService subscribeForRefreshNetworkStat:self event:^{
-            [_self _performFetwingFromNetwork];
+            [_self MA_performFetwingFromNetwork];
         }];
     }
     return self;
@@ -40,20 +40,20 @@
     
     [self.delegate onMovieDetailedDataAvailable:_currentMovieInfo];
     
-    [self _performFetwingFromNetwork];
+    [self MA_performFetwingFromNetwork];
 }
 
-- (void)_performFetwingFromNetwork {
+- (void)MA_performFetwingFromNetwork {
     __weak typeof(self) _self = self;
     [TMDBMoviesAPI fetchMovieByIdentifier:_currentMovieInfo.identifier
                                  response:^(TMDBMovieEntity *movie) {
                                      if (movie) {
-                                         [_self _processAndNotyfyWithMovie:movie];
+                                         [_self MA_processAndNotyfyWithMovie:movie];
                                      }
                                  }];
 }
 
-- (void)_processAndNotyfyWithMovie:(TMDBMovieEntity *)movie {
+- (void)MA_processAndNotyfyWithMovie:(TMDBMovieEntity *)movie {
     
     _currentMovieInfo = [[MovieInfo alloc] initWithMovieEntity:movie];
     [self.delegate onMovieDetailedDataAvailable:_currentMovieInfo];

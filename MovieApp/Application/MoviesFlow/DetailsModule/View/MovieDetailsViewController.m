@@ -41,13 +41,13 @@
     self.navigationItem.title = movie.title;
     _titleLabel.text = movie.originalTitle;
     _releaseDateLabel.text = movie.releaseDate;
-    _genreLabel.text = [self _formattedListStringFromStringsArray:movie.genres];
+    _genreLabel.text = [self MA_formattedListStringFromStringsArray:movie.genres];
     _overviewLabel.text = movie.overview;
     
     [_backgroundImageView setImageWithURL:movie.posterURL];
 }
 
-- (NSString *)_formattedListStringFromStringsArray:(NSArray<NSString*> *)strings {
+- (NSString *)MA_formattedListStringFromStringsArray:(NSArray<NSString*> *)strings {
     __block NSString *formattedGeners = @"";
     
     [strings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
