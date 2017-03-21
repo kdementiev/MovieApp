@@ -8,6 +8,9 @@ target 'MovieApp' do
   # Pods for MovieApp
 
   pod 'AFNetworking'
+  # Unreleased version. Read more: https://github.com/AFNetworking/AFNetworkActivityLogger/tree/3_0_0#2x---3x-migration
+  pod 'AFNetworkActivityLogger', :git => 'https://github.com/AFNetworking/AFNetworkActivityLogger.git', :branch => '3_0_0'
+  
   pod 'JSONModel'
   pod 'EasySegues'
 

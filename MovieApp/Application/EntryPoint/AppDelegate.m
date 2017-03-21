@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
-
 #import "PopularMoviesModuleConfigurator.h"
+
+#import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
+
 
 @interface AppDelegate ()
 
@@ -19,6 +21,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+#ifdef DEBUG
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+    
+#ifdef DEBUG_NETWORKING
+    id<AFNetworkActivityLoggerProtocol> defaultLogger = [[AFNetworkActivityLogger sharedLogger].loggers anyObject];
+    [defaultLogger setLevel:AFLoggerLevelDebug];
+#endif
+    
+#endif
     
     // Get PopularMoviesViewInterface from our root navigation controller.
     UINavigationController *rootViewController = (UINavigationController*)self.window.rootViewController;
