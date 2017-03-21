@@ -9,6 +9,7 @@ target 'MovieApp' do
 
   pod 'AFNetworking'
   pod 'JSONModel'
+  pod 'EasySegues'
 
   target 'MovieAppTests' do
     inherit! :search_paths

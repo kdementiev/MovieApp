@@ -9,9 +9,9 @@
 #import "PopularMoviesRouter.h"
 
 #import <UIKit/UIKit.h>
+#import <EasySegues/UIViewController+EasySegues.h>
 
 #import "UIStoryboard+MoviesFlow.h"
-#import "UIViewController+Segues.h"
 
 #import "MovieDetailsModuleConfigurator.h"
 

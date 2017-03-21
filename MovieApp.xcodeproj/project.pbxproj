@@ -35,7 +35,6 @@
 		74CE45D31E7DA722005F2036 /* MovieDetailsRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45CC1E7DA722005F2036 /* MovieDetailsRouter.m */; };
 		74CE45D41E7DA722005F2036 /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45CF1E7DA722005F2036 /* MovieDetailsViewController.m */; };
 		74CE45DB1E7DAA31005F2036 /* LocalizationStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45D71E7DAA31005F2036 /* LocalizationStrings.m */; };
-		74CE45DC1E7DAA31005F2036 /* UIViewController+Segues.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45DA1E7DAA31005F2036 /* UIViewController+Segues.m */; };
 		74CE45E21E7DAC91005F2036 /* UIStoryboard+MoviesFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45E11E7DAC91005F2036 /* UIStoryboard+MoviesFlow.m */; };
 		74CE45E91E7DAE54005F2036 /* TMDBGenreEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45E61E7DAE54005F2036 /* TMDBGenreEntity.m */; };
 		74CE45EA1E7DAE54005F2036 /* TMDBNetworkingCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CE45E81E7DAE54005F2036 /* TMDBNetworkingCore.m */; };
@@ -115,8 +114,6 @@
 		74CE45CF1E7DA722005F2036 /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
 		74CE45D61E7DAA31005F2036 /* LocalizationStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationStrings.h; sourceTree = "<group>"; };
 		74CE45D71E7DAA31005F2036 /* LocalizationStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationStrings.m; sourceTree = "<group>"; };
-		74CE45D91E7DAA31005F2036 /* UIViewController+Segues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Segues.h"; sourceTree = "<group>"; };
-		74CE45DA1E7DAA31005F2036 /* UIViewController+Segues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Segues.m"; sourceTree = "<group>"; };
 		74CE45E01E7DAC91005F2036 /* UIStoryboard+MoviesFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+MoviesFlow.h"; sourceTree = "<group>"; };
 		74CE45E11E7DAC91005F2036 /* UIStoryboard+MoviesFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+MoviesFlow.m"; sourceTree = "<group>"; };
 		74CE45E51E7DAE54005F2036 /* TMDBGenreEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBGenreEntity.h; sourceTree = "<group>"; };
@@ -235,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				74CE45D51E7DAA31005F2036 /* Constants */,
-				74CE45D81E7DAA31005F2036 /* UIAddons */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -475,15 +471,6 @@
 				74CE45D71E7DAA31005F2036 /* LocalizationStrings.m */,
 			);
 			path = Constants;
-			sourceTree = "<group>";
-		};
-		74CE45D81E7DAA31005F2036 /* UIAddons */ = {
-			isa = PBXGroup;
-			children = (
-				74CE45D91E7DAA31005F2036 /* UIViewController+Segues.h */,
-				74CE45DA1E7DAA31005F2036 /* UIViewController+Segues.m */,
-			);
-			path = UIAddons;
 			sourceTree = "<group>";
 		};
 		74CE45E31E7DAE54005F2036 /* TheMovieDatabseAPI */ = {
@@ -800,7 +787,6 @@
 				745666301E7D4CEA00E5632E /* AppDelegate.m in Sources */,
 				74CE45D21E7DA722005F2036 /* MovieDetailsPresenter.m in Sources */,
 				74BD81041E806C180061F2F4 /* MovieInfo+TMDBMovieEntity.m in Sources */,
-				74CE45DC1E7DAA31005F2036 /* UIViewController+Segues.m in Sources */,
 				74CE45A41E7D84B1005F2036 /* PopularMoviesPresenter.m in Sources */,
 				74CE45D41E7DA722005F2036 /* MovieDetailsViewController.m in Sources */,
 				74CE45DB1E7DAA31005F2036 /* LocalizationStrings.m in Sources */,
