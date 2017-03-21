@@ -16,6 +16,10 @@ typedef void(^NetworkingStatusServiceCallback)();
 
 + (instancetype)sharedInstance;
 
+/**
+    Allows subscriber to be notified with evenet when it need to reload data from network etc.
+    If subscriber dies, 'callback' block will be removed automatically.
+ */
 - (void)subscribeForRefreshNetworkStat:(id)subscriber event:(NetworkingStatusServiceCallback)callback;
 
 @end
