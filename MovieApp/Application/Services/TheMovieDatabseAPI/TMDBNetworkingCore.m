@@ -80,28 +80,21 @@ NSUInteger const TMDBResponsesCacheOnDiskSize = 64 * 1024 * 1024;
                                                        sessionConfiguration:configuration];
         
 
-        // Prepare reachability.
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_networkStatusWasChanged:)
-                                                     name:AFNetworkingReachabilityDidChangeNotification
-                                                   object:nil];
-        
-        
+        // Prepare reachability monitor.
+        __weak typeof(self) _self = self;
+        [self.sessionManager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            [_self _validateCachingPolicyWithStatus:status];
+        }];
         
         [self.sessionManager.reachabilityManager startMonitoring];
-        [self _validateCachingPolicy];
+    
         
     }
     return self;
 }
 
-- (void)_networkStatusWasChanged:(NSNotification*)notification {
-    [self _validateCachingPolicy];
-}
-
-- (void)_validateCachingPolicy {
-    NSLog(@"Reachable: %i", _sessionManager.reachabilityManager.reachable);
-    _sessionManager.requestSerializer.cachePolicy = _sessionManager.reachabilityManager.reachable ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReturnCacheDataDontLoad;
+- (void)_validateCachingPolicyWithStatus:(AFNetworkReachabilityStatus)status {
+    _sessionManager.requestSerializer.cachePolicy = status ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReturnCacheDataDontLoad;
 }
 
 - (void)performGET:(NSString*)route params:(NSDictionary*)params class:(Class)resultClass response:(TMDBNetworkingCoreResponseCallback)callback {
