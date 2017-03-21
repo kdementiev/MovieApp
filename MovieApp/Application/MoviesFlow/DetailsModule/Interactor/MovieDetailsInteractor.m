@@ -29,7 +29,7 @@
         self.currentMovieInfo = movieInfo;
         
         __weak typeof(self) _self = self;
-        [networkingStatusService subscribeForRefreshNetworkState:^{
+        [networkingStatusService subscribeForRefreshNetworkStat:self event:^{
             [_self _performFetwingFromNetwork];
         }];
     }

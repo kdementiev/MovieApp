@@ -16,6 +16,6 @@ typedef void(^NetworkingStatusServiceCallback)();
 
 + (instancetype)sharedInstance;
 
-- (void)subscribeForRefreshNetworkState:(NetworkingStatusServiceCallback)callback;
+- (void)subscribeForRefreshNetworkStat:(id)subscriber event:(NetworkingStatusServiceCallback)callback;
 
 @end

@@ -12,7 +12,7 @@
 
 
 @interface NetworkingStatusService ()
-@property (nonatomic, strong) NSMutableArray<NetworkingStatusServiceCallback> *subscribers;
+@property (nonatomic, strong) NSMapTable<id, NetworkingStatusServiceCallback> *subscribers;
 @end
 
 
@@ -35,8 +35,6 @@
     self = [super init];
     if (self) {
         
-        self.subscribers = [NSMutableArray new];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(_networkStatusWasChanged:)
                                                      name:AFNetworkingReachabilityDidChangeNotification
@@ -52,10 +50,28 @@
     return self;
 }
 
-#pragma mark - -
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (NSMapTable<id,NetworkingStatusServiceCallback> *)subscribers {
+    if (!_subscribers) {
+        _subscribers = [NSMapTable weakToStrongObjectsMapTable];
+    }
+    return _subscribers;
+}
+
+- (void)subscribeForRefreshNetworkStat:(id)subscriber event:(NetworkingStatusServiceCallback)callback {
+    
+    NSAssert(subscriber != nil, @"'subscriber' should be not nil");
+    NSAssert(callback != nil, @"'callback' should be not nil");
+    
+    [self.subscribers setObject:callback forKey:subscriber];
+}
+
+#pragma mark - Notifications -
 
 - (void)_networkStatusWasChanged:(NSNotification*)notification {
-    
     if ([[notification.userInfo valueForKey:AFNetworkingReachabilityNotificationStatusItem] boolValue]) {
         [self _notifySubscribers];
     }
@@ -65,20 +81,24 @@
     [self _notifySubscribers];
 }
 
-#pragma mark - - 
+#pragma mark - Helpers -
 
 - (void)_notifySubscribers {
-    for (NetworkingStatusServiceCallback callback in _subscribers) {
+    
+    NSEnumerator<NetworkingStatusServiceCallback> *enumerator = [self.subscribers objectEnumerator];
+    NetworkingStatusServiceCallback callback;
+
+    while ( callback = [enumerator nextObject] ) {
         callback();
     }
 }
 
-#pragma mark - - 
-
-- (void)subscribeForRefreshNetworkState:(NetworkingStatusServiceCallback)callback {
-    [_subscribers addObject:callback];
-}
-
-
-
 @end
+
+
+
+
+
+
+
+
