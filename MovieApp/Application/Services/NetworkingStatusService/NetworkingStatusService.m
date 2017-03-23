@@ -12,7 +12,10 @@
 
 
 @interface NetworkingStatusService ()
+
+@property (nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
 @property (nonatomic, strong) NSMapTable<id, NetworkingStatusServiceCallback> *subscribers;
+
 @end
 
 
@@ -35,11 +38,7 @@
     self = [super init];
     if (self) {
         
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(MA_networkStatusWasChanged:)
-                                                     name:AFNetworkingReachabilityDidChangeNotification
-                                                   object:nil];
-        
+        [self MA_prepareReachability];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(MA_applicationWillRise:)
@@ -54,6 +53,18 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)MA_prepareReachability {
+    
+    self.reachabilityManager = [AFNetworkReachabilityManager manager];
+    [self.reachabilityManager startMonitoring];
+    
+    __weak typeof(self) _self = self;
+    [self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        [_self MA_notifySubscribers];
+    }];
+}
+
+
 - (NSMapTable<id,NetworkingStatusServiceCallback> *)subscribers {
     if (!_subscribers) {
         _subscribers = [NSMapTable weakToStrongObjectsMapTable];
@@ -61,7 +72,7 @@
     return _subscribers;
 }
 
-- (void)subscribeForRefreshNetworkStat:(id)subscriber event:(NetworkingStatusServiceCallback)callback {
+- (void)subscribeForRefreshNetworkState:(id)subscriber event:(NetworkingStatusServiceCallback)callback {
     
     NSAssert(subscriber != nil, @"'subscriber' should be not nil");
     NSAssert(callback != nil, @"'callback' should be not nil");
@@ -71,11 +82,6 @@
 
 #pragma mark - Notifications -
 
-- (void)MA_networkStatusWasChanged:(NSNotification*)notification {
-    if ([[notification.userInfo valueForKey:AFNetworkingReachabilityNotificationStatusItem] boolValue]) {
-        [self MA_notifySubscribers];
-    }
-}
 
 - (void)MA_applicationWillRise:(NSNotification*)notification {
     [self MA_notifySubscribers];
@@ -87,9 +93,11 @@
     
     NSEnumerator<NetworkingStatusServiceCallback> *enumerator = [self.subscribers objectEnumerator];
     NetworkingStatusServiceCallback callback;
+    
+    BOOL networkAvailable = self.reachabilityManager.reachable;
 
     while ( callback = [enumerator nextObject] ) {
-        callback();
+        callback(networkAvailable);
     }
 }
 

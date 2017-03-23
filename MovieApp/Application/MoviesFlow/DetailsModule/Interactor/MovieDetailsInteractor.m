@@ -28,12 +28,20 @@
     if (self) {
         self.currentMovieInfo = movieInfo;
         
-        __weak typeof(self) _self = self;
-        [networkingStatusService subscribeForRefreshNetworkStat:self event:^{
-            [_self MA_performFetwingFromNetwork];
-        }];
+        [self MA_subscribeForEvents];
     }
     return self;
+}
+
+- (void)MA_subscribeForEvents {
+    
+    __weak typeof(self) _self = self;
+    [networkingStatusService subscribeForRefreshNetworkState:self event:^(BOOL networkAvailable) {
+        if (networkAvailable) {
+            [_self MA_performFetwingFromNetwork];
+        }
+    }];
+    
 }
 
 - (void)requestDetailedContent {

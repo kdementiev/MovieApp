@@ -13,8 +13,17 @@
 #import "MovieInfo+TMDBMovieEntity.h"
 
 
+typedef enum : NSUInteger {
+    PopularMoviesInteractorIdle = 0,
+    PopularMoviesInteractorFetchingData,
+} PopularMoviesInteractorStatus;
+
+
 @interface PopularMoviesInteractor ()
+
 @property (nonatomic) NSMutableArray<MovieInfo *> *moviesList;
+@property (nonatomic) PopularMoviesInteractorStatus status;
+
 @end
 
 
@@ -26,21 +35,44 @@
 {
     self = [super init];
     if (self) {
-        __weak typeof(self) _self = self;
-        [networkingStatusService subscribeForRefreshNetworkStat:self event:^{
-            [_self requestNewContent];
-        }];
+        [self MA_subscribeForEvents];
     }
+    
     return self;
 }
 
+- (void)MA_subscribeForEvents {
+    
+    __weak typeof(self) _self = self;
+    [networkingStatusService subscribeForRefreshNetworkState:self event:^(BOOL networkAvailable) {
+        if (networkAvailable) {
+            
+            // Try to get new content.
+            [_self requestNewContent];
+            
+            // Notify with available connection.
+            [_self.delegate onNetworkConnectionRestored];
+        } else {
+            
+            // Notify with no connection.
+            [_self.delegate onNetworkConnectionLost];
+        }
+    }];
+}
+
 - (void)requestNewContent {
-  
+    
+    if (_status != PopularMoviesInteractorIdle) {
+        return;
+    }
+    
+    _status = PopularMoviesInteractorFetchingData;
+    
     __weak typeof(self) _self = self;
     [TMDBMoviesAPI fetchPopularMovies:^(TMDBMoviesPage *moviesPage) {
+        _self.status = PopularMoviesInteractorIdle;
         [_self MA_processAndNotifyWithMoviesFetched:moviesPage.results];
     }];
-    
 }
 
 - (void)MA_processAndNotifyWithMoviesFetched:(NSArray<TMDBMovieEntity *> *)tmdbMovies {
